@@ -233,7 +233,7 @@ startStage "Git finalisation"
 (
     cd ${TARGET}
     git add .
-    git commit -m "Copied from template to '${REPO_NAME}'"
+    git commit -m "Copied from '${REPO_ROOT}' to '${REPO_NAME}'"
 )
 
 # Done
