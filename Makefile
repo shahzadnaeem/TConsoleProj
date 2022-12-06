@@ -19,6 +19,7 @@ clean:
 	$(DOTNET) $@
 	rm -rf $(TEST_RESULTS) $(TEST_REPORT)
 
+# Show generated .NET build versions
 generated:
 	(find . -type d -a \( -name obj -o -name bin \) -exec ls -lR {} \;) | grep -E -e "net[0-9\.]+:"
 
@@ -28,12 +29,15 @@ watch run:
 test:
 	$(DOTNET) test $(TEST_PROJECT)
 
+# Coverage test run
 coverage:
 	rm -rf $(TEST_RESULTS)
 	$(DOTNET) test $(TEST_PROJECT) --collect "Xplat Code Coverage"
 
+# Coverage report (text)
 coverage-report: coverage
 	$(COVERAGE_REPORTER) $(TEST_PROJECT)
 
+# Coverage report (HTML)
 coverage-report-html: coverage
 	$(COVERAGE_REPORTER) $(TEST_PROJECT) HTML
