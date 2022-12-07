@@ -10,7 +10,7 @@ TEST_REPORT=$(TEST_PROJECT)/TestReport
 DOTNET=dotnet
 COVERAGE_REPORTER=$(TEST_PROJECT)/scripts/createCoverageReport.sh
 
-.PHONY: build clean generated watch run test coverage coverage-report coverage-report-html
+.PHONY: build clean distclean generated watch run test coverage coverage-report coverage-report-html
 
 build:
 	$(DOTNET) $@
@@ -18,6 +18,11 @@ build:
 clean:
 	$(DOTNET) $@
 	rm -rf $(TEST_RESULTS) $(TEST_REPORT)
+
+distclean: clean
+	rm -rf $(PROJECT)/obj ${PROJECT}/bin
+	rm -rf $(LIB_PROJECT)/obj $(LIB_PROJECT)/bin
+	rm -rf $(TEST_PROJECT)/obj $(TEST_PROJECT)/bin
 
 # Show generated .NET build versions
 generated:
